@@ -1,0 +1,15 @@
+{% extends "appmuebleria/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+    <p>CLIENTES CARGADOS</p>
+    {% for c in clientes %}
+        <li>{{c}}</li>
+        <button>
+            <a href="{% url 'eliminarCliente' c.nombre %}">Eliminar</a>
+        </button>
+    {% endfor %}
+    <br>
+    <a href="{% url 'cliente' %}">Agregar un cliente</a>
+{% endblock %}

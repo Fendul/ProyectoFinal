@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    {% extends "appmuebleria/padre.html" %}
+
+    {% load static %}
+
+    {% block contenidoQueCambia %}
+
+    <h1>DETALLE PRODUCTO</h1>
+
+    <p>Codigo: <i>{{producto.codigo}}</i></p>
+    <p>Descripcion: <i>{{producto.descripcion}}</i></p>
+    <p>Precio: <i>{{producto.precio}}</i></p>
+    
+    <p>
+        <a href="{% url "leerProductos" %}">Regresar</a>
+    </p>
+
+    {% endblock %}
+</body>
+
+</html>

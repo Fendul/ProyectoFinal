@@ -1,0 +1,12 @@
+{% extends "appmuebleria/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+    <p>PRODUCTOS CARGADOS</p>
+    {% for p in productos %}
+        <li>{{p}}</li>
+    {% endfor %}
+    <br>
+    <a href="{% url 'producto' %}">Agregar un producto</a>
+{% endblock %}

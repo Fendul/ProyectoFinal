@@ -1,0 +1,18 @@
+{% extends "appmuebleria/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<h1>BORRAR VENDEDOR</h1>
+
+<form action = " " method = "POST">
+    {% csrf_token %}
+
+    <p>Confirma borrar vendedor: {{vendedor}}??</p>
+
+    <input type ="submit" value ="Borrar">
+
+</form>
+
+{% endblock contenidoQueCambia %}

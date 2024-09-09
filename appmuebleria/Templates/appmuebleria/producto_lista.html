@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    {% extends "appmuebleria/padre.html" %}
+
+    {% load static %}
+
+    {% block contenidoQueCambia %}
+    <h1>PRODUCTOS CARGADOS</h1>
+    {% for producto in productos %}
+    <li>{{producto.codigo}} : {{producto.descripcion}}</li>
+    <p>
+        <a href="{% url "detalleProducto" producto.pk %}"> Ver </a>
+        |
+        <a href="{% url "editarProducto" producto.pk %}"> Editar </a>
+        |
+        <a href="{% url "borrarProducto" producto.pk %}"> Borrar </a>
+    </p>
+    </li>
+    {% endfor %}
+    <br>
+    <button>
+        <a href="{% url 'nuevoProducto' %}">Nuevo Producto</a>
+    </button>
+    {% endblock %}
+</body>
+
+</html>

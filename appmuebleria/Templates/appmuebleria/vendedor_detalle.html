@@ -1,0 +1,15 @@
+{% extends "appmuebleria/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<h1>DETALLE VENDEDOR</h1>
+
+<p>Nombre: <i>{{vendedor.nombre}}</i></p>
+<p>CBU: <i>{{vendedor.cbu}}</i></p>
+<p>
+    <a href = "{% url "leerVendedores" %}">Regresar</a>
+</p>
+
+{% endblock %}

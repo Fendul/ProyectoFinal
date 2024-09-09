@@ -1,78 +1,101 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from appmuebleria.models import *
-from django.template import Template, Context, loader
 from appmuebleria.forms import *
+from appmuebleria.models import *
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 # Create your views here.
-def vendedor (request):  
-    if request.method == "POST":
-        miFormulario = VendedorFormulario(request.POST)
-        print(miFormulario)
-        
-        if miFormulario.is_valid:
-            informacion = miFormulario.cleaned_data
-            vendedor = Vendedor (nombre=informacion["nombre"], cbu=informacion["cbu"])
-            vendedor.save()
-            return render (request, "appmuebleria/inicio.html")
-    else:
-        miFormulario = VendedorFormulario()
-           
-    return render (request, "appmuebleria/vendedor.html",{"miFormulario":miFormulario})
-
-def cliente (request):
-    if request.method == "POST":
-        miFormulario = ClienteFormulario(request.POST)
-        print(miFormulario)
-        
-        if miFormulario.is_valid:
-            informacion = miFormulario.cleaned_data
-            cliente = Cliente (nombre=informacion["nombre"], direccion=informacion["direccion"], telefono=informacion["telefono"], email=informacion["email"])
-            cliente.save()
-            return render (request, "appmuebleria/inicio.html")
-    else:
-        miFormulario = ClienteFormulario()
-    
-    return render (request, "appmuebleria/cliente.html", {"miFormulario":miFormulario})
-
-def producto (request):
-    
-    if request.method == "POST":
-        miFormulario = ProductoFormulario(request.POST)
-        print(miFormulario)
-        
-        if miFormulario.is_valid:
-            informacion = miFormulario.cleaned_data
-            producto = Producto (codigo=informacion["codigo"], descripcion=informacion["descripcion"], precio=informacion["precio"])
-            producto.save()
-            return render (request, "appmuebleria/inicio.html")
-    else:
-        miFormulario = ProductoFormulario()
-    
-    return render (request, "appmuebleria/producto.html",{"miFormulario":miFormulario})
-
 def inicio (request):
     
     return render (request, "appmuebleria/inicio.html")
 
-def buscarProducto (request):
-    
-    return render (request, "appmuebleria/buscarProducto.html")
-
-def buscar (request):
-    
-    if request.GET["codigo"]:
-        codigo = request.GET['codigo']
-        productos = Producto.objects.filter(codigo__icontains=codigo)
-        
-        return render (request, "appmuebleria/resultadoBusqueda.html", {"productos":productos, "codigo":codigo})
-    
-    else:
-        
-        respuesta ="No enviaste datos"
-    
-    return HttpResponse (respuesta)
-
 def catalogo (request):
     
     return render (request, "appmuebleria/catalogo.html")
+
+#VENDEDOR
+class VendedorListView (LoginRequiredMixin, ListView):
+    model = Vendedor
+    context_object_name = "vendedores"
+    template_name = "appmuebleria/vendedor_lista.html"
+    
+class VendedorDetailView(LoginRequiredMixin, DetailView):
+    model = Vendedor
+    template_name = "appmuebleria/vendedor_detalle.html"
+    
+class VendedorCreateView (LoginRequiredMixin, CreateView):
+    model = Vendedor
+    template_name = "appmuebleria/vendedor_crear.html"
+    success_url = reverse_lazy("leerVendedores")
+    fields = ["nombre", "cbu"]
+
+class VendedorUpdateView (LoginRequiredMixin, UpdateView):
+    model = Vendedor
+    template_name = "appmuebleria/vendedor_editar.html"
+    success_url = reverse_lazy("leerVendedores")
+    fields = ["nombre", "cbu"]
+    
+class VendedorDeleteView(LoginRequiredMixin, DeleteView):
+    model = Vendedor
+    template_name = "appmuebleria/vendedor_borrar.html"
+    success_url = reverse_lazy("leerVendedores")
+
+#CLIENTE
+
+class ClienteListView (LoginRequiredMixin, ListView):
+    model = Cliente
+    context_object_name = "clientes"
+    template_name = "appmuebleria/cliente_lista.html"
+    
+class ClienteDetailView(LoginRequiredMixin, DetailView):
+    model = Cliente
+    template_name = "appmuebleria/cliente_detalle.html"
+    
+class ClienteCreateView (LoginRequiredMixin, CreateView):
+    model = Cliente
+    template_name = "appmuebleria/cliente_crear.html"
+    success_url = reverse_lazy("leerClientes")
+    fields = ["nombre", "direccion", "telefono", "email"]
+
+class ClienteUpdateView (LoginRequiredMixin, UpdateView):
+    model = Cliente
+    template_name = "appmuebleria/cliente_editar.html"
+    success_url = reverse_lazy("leerClientes")
+    fields = ["nombre", "direccion", "telefono", "email"]
+    
+class ClienteDeleteView(LoginRequiredMixin, DeleteView):
+    model = Cliente
+    template_name = "appmuebleria/cliente_borrar.html"
+    success_url = reverse_lazy("leerClientes")
+
+#PRODUCTOS
+
+class ProductoListView (LoginRequiredMixin, ListView):
+    model = Producto
+    context_object_name = "productos"
+    template_name = "appmuebleria/producto_lista.html"
+    
+class ProductoDetailView(LoginRequiredMixin, DetailView):
+    model = Producto
+    template_name = "appmuebleria/producto_detalle.html"
+    
+class ProductoCreateView (LoginRequiredMixin, CreateView):
+    model = Producto
+    template_name = "appmuebleria/producto_crear.html"
+    success_url = reverse_lazy("leerProductos")
+    fields = ["codigo", "descripcion", "precio"]
+
+class ProductoUpdateView (LoginRequiredMixin, UpdateView):
+    model = Producto
+    template_name = "appmuebleria/producto_editar.html"
+    success_url = reverse_lazy("leerProductos")
+    fields = ["codigo", "descripcion", "precio"]
+    
+class ProductoDeleteView(LoginRequiredMixin, DeleteView):
+    model = Producto
+    template_name = "appmuebleria/producto_borrar.html"
+    success_url = reverse_lazy("leerProductos")

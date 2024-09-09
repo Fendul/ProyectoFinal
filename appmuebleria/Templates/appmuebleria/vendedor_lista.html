@@ -1,0 +1,22 @@
+{% extends "appmuebleria/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+<h1>VENDEDORES CARGADOS</h1>
+{% for vendedor in vendedores %}
+    <li>{{vendedor.nombre}}</li>
+        <p>
+            <a href = "{% url "detalleVendedor" vendedor.pk %}"> Ver </a>
+            |
+            <a href = "{% url "editarVendedor" vendedor.pk %}"> Editar </a>
+            |
+            <a href = "{% url "borrarVendedor" vendedor.pk %}"> Borrar </a>
+        </p>
+    </li>
+{% endfor %}
+    <br>
+    <button>
+    <a href="{% url 'nuevoVendedor' %}">Agregar un vendedor</a>
+    </button>
+{% endblock %}
