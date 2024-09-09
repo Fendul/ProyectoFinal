@@ -58,16 +58,16 @@ def editar_perfil(request):
         miFormulario = UserEditForm(request.POST, request.FILES, instance=usuario)
         if miFormulario.is_valid():
             
-            if miFormulario.cleaned_data.get("Avatar"):
+            if miFormulario.cleaned_data.get("imagen"):
                 
                 if Avatar.objects.filter(user=usuario).exists():
                     
-                    usuario.imagen.imagen = miFormulario.cleaned_data.get('Avatar')
-                    usuario.imagen.save()
+                    usuario.avatar.imagen = miFormulario.cleaned_data.get("imagen")
+                    usuario.avatar.save()
                     
                 else:
                     
-                    avatar = Avatar(user=usuario, imagen=miFormulario.cleaned_data.get('Avatar'))
+                    avatar = Avatar(user=usuario, imagen=miFormulario.cleaned_data.get("imagen"))
                     avatar.save()
                     
             miFormulario.save()
