@@ -17,6 +17,10 @@ def catalogo (request):
     
     return render (request, "appmuebleria/catalogo.html")
 
+def about (request):
+    
+    return render (request, "appmuebleria/about.html")
+
 #VENDEDOR
 class VendedorListView (LoginRequiredMixin, ListView):
     model = Vendedor

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre mi</title>
+</head>
+
+<body>
+{% extends "appmuebleria/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+    <p>Mi nombre es Mateo, tengo 35 años. Vivo en Junin (bs.as).
+    Trabajo en armado y mantenimiento de equipos informaticos, armado de redes y cableado estructurado.
+    Estudie programacion en la UNNOBA la universidad del noroeste con sede aca en Junin, estuve muy cerca de recibirme
+    como tecnico en programas agricolas(que era una carrera de programador pero orientado al campo) de ahi nos daban
+    bases de programacion en assembler o pascal, para luego pasar a java o c++.
+    Consegui una pasantia en una empresa que dedicaba al mantenimiento de empresas y asi fue como deje la programacion
+    para pasar a los fierros.
+    Hoy en dia con el crecimiento del trabajo remoto y mis bases en programacion voy a intentar retomar aquello que
+    empece cuando termine el secundario</p>
+
+{% endblock contenidoQueCambia %}
+</html>

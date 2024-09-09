@@ -6,6 +6,7 @@ urlpatterns = [
     path('',inicio, name="Inicio"),
     path("inicio/", inicio, name="inicio"),
     path("catalogo/", catalogo, name="catalogo"),
+    path("about/", about, name="about"),
     
     #CLIENTES
     path("clientes/nuevo", ClienteCreateView.as_view() , name= "nuevoCliente"),
