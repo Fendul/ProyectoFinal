@@ -1,6 +1,8 @@
 Bucala Mateo
 
+El proyecto esta orientado al manejo de los datos de un comercio, en este caso utilizo un negocio de mi familia como ejemplo. Vamos a poder cargar los datos de contacto de nuestros clientes. Cargar los productos con sus precios y los vendedores con un cbu
 
+Version 1.0
 
 El sitio appmuebleria cuenta con una botonera en la parte superiror derecha a la cual se puede accerder a clientes, productos, vendedor, sobre mi. Y un boton de login
 En la pagina de inicio cuenta con un bonton que nos lleva a un catalaogo de imagenes.
@@ -12,3 +14,7 @@ Un usuario registrado podra:
 
 
 Video demostrativo : https://youtu.be/FE9hCvn7tbY
+
+Proyeccion:
+
+Comenzar a cruzar estos datos cargados y asi poder por ejemplo llevar la cuenta corriente de un cliente con sus respectivos productos y el vendedor encargado a quien luego le podamos hacer un reporte de esas ventas para calcular comisiones. 
